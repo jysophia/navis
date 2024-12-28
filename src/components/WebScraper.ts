@@ -20,10 +20,14 @@ export function parseText(fullText: any) {
 
 export function cleanText(thisScholarship: any) {
     thisScholarship.name = thisScholarship.name.substring(2)
-    const regex = /https?:\/\/[^\s]+/;
-    const match = thisScholarship.href.match(regex);
-    if (match) {
-        thisScholarship.href = match[0].replace(/[\]\)]$/, '');
+    let link = ""
+    for (let i=0; i < thisScholarship.href.length; i++) {
+        if (thisScholarship.href[i] == ']') {
+            break
+        } else if (!(thisScholarship.href[i] == '[' || thisScholarship.href[i] == ' ')) {
+            link += thisScholarship.href[i]
+        }
     }
+    thisScholarship.href = link
     return thisScholarship
 }
