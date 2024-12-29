@@ -1,6 +1,6 @@
 import { MemoryRouter, Routes, Route } from 'react-router'
 import './App.css'
-import HomePage from './components/HomePage'
+import HomePage from './components/extension/HomePage'
 
 function App() {
   return (
