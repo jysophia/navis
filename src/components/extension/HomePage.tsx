@@ -1,29 +1,50 @@
 import { useState, useEffect } from 'react'
 import { CohereClient } from "cohere-ai";
 import { parseText } from "./WebScraper"
-import reactLogo from '../assets/react.svg'
+import reactLogo from '../../assets/react.svg'
 import viteLogo from '/vite.svg'
 
 export default function HomePage() {
     const [scholarships, setScholarships] = useState([]);
+    const [currentURL, setCurrentURL] = useState("");
+    const [success, setSuccess] = useState("Press button to scrape web");
     const api_key = import.meta.env.VITE_COHERE_API_KEY;
 
     useEffect(() => {
-        if (scholarships) {
-        console.log(scholarships);
+        if (currentURL.length > 0) {
+            sendQuery();
         }
-    }, [scholarships])
+    })
 
-    const scrapeWeb = async () => {
-        const client = new CohereClient({ token: api_key });        
+    useEffect(() => {
+        if (scholarships) {
+            console.log(scholarships);
+        }
+    }, [scholarships]);
+
+    const sendQuery = async () => {
+        const client = new CohereClient({ token: api_key });
         const response = await client.chat(
         {
-            message: "list, summarize, and hyperlink the scholarship information from this href: https://students.ubc.ca/finances/awards-scholarships-bursaries/ and organize the list into the following format: Scholarship name; link; and description. Use * as bullet points and use plain text.",
+            message: `list, summarize, and link the scholarship information from this href: ${currentURL} and organize the list into the following format: name && url && description. Use * as bullet points and use plain text.`,
             model: "command-r-08-2024",
             preamble: "You are an AI-assistant chatbot. You are trained to assist users by providing thorough and helpful responses to their queries."
         }
         )
-        setScholarships(parseText(response.text));
+        let parsedScholarshipList = parseText(response.text);
+        if (parsedScholarshipList.length > 0) {
+            setSuccess("Successfully extracted scholarships");
+            setScholarships(parsedScholarshipList);
+        } else {
+            setSuccess("Please try again");
+        }
+    }
+
+    const getUrl = async () => {
+        let [tab] = await chrome.tabs.query({active: true, currentWindow: true});
+        const url = tab.url || "";
+        setCurrentURL(url);
+        setSuccess("Loading...");
     }
 
     return (
@@ -38,11 +59,11 @@ export default function HomePage() {
             </div>
             <h1>Vite + React</h1>
             <div className="card">
-                <button onClick={() => scrapeWeb()}>
+                <button onClick={() => getUrl()}>
                 scrape website
                 </button>
                 <p>
-                Edit <code>src/App.tsx</code> and save to test HMR
+                {success}
                 </p>
             </div>
             <p className="read-the-docs">
