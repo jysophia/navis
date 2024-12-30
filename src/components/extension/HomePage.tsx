@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import { CohereClient } from "cohere-ai";
 import { parseText } from "./WebScraper"
-import reactLogo from '../../assets/react.svg'
-import viteLogo from '/vite.svg'
+import ScholarshipList from './ScholarshipList';
 
 export default function HomePage() {
     const [scholarships, setScholarships] = useState([]);
     const [currentURL, setCurrentURL] = useState("");
-    const [success, setSuccess] = useState("Press button to scrape web");
+    const [message, setMessage] = useState("Press button to scrape web");
+    const [success, setSuccess] = useState(false);
     const api_key = import.meta.env.VITE_COHERE_API_KEY;
 
     useEffect(() => {
@@ -33,10 +33,13 @@ export default function HomePage() {
         )
         let parsedScholarshipList = parseText(response.text);
         if (parsedScholarshipList.length > 0) {
-            setSuccess("Successfully extracted scholarships");
             setScholarships(parsedScholarshipList);
+            setMessage("Successfully extracted scholarships");
+            setSuccess(true);
+            return
         } else {
-            setSuccess("Please try again");
+            setMessage("Please try again");
+            return
         }
     }
 
@@ -44,31 +47,21 @@ export default function HomePage() {
         let [tab] = await chrome.tabs.query({active: true, currentWindow: true});
         const url = tab.url || "";
         setCurrentURL(url);
-        setSuccess("Loading...");
+        setMessage("Loading...");
     }
 
     return (
         <>
+            <h1>Navis</h1>
+            <div className="homepage">
+                <p className="read-the-docs">{message}</p>
+                <button className="scanPageButton" onClick={() => getUrl()}>Scan Page</button>
+            </div>
             <div>
-            <a href="https://vite.dev" target="_blank">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-            </a>
-            <a href="https://react.dev" target="_blank">
-            <img src={reactLogo} className="logo react" alt="React logo" />
-            </a>
+                { success ? (
+                    <ScholarshipList data={scholarships}/>
+                ) : null }
             </div>
-            <h1>Vite + React</h1>
-            <div className="card">
-                <button onClick={() => getUrl()}>
-                scrape website
-                </button>
-                <p>
-                {success}
-                </p>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
         </>
     )
 }
