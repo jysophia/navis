@@ -1,4 +1,5 @@
 import {Scholarship} from "../../Scholarship"
+import ParserException from "./ParserException"
 
 export function parseText(fullText: any) {
     let scholarships = fullText.split("\n");
@@ -11,7 +12,12 @@ export function parseText(fullText: any) {
                 href: currentScholarship[1],
                 description: currentScholarship[2]
             }
-            scholarshipList.push(cleanText(scholarship));
+            try {
+                let cleanScholarship = cleanText(scholarship);
+                scholarshipList.push(cleanScholarship);
+            } catch (error: unknown) {
+                return [];
+            }
         }
     }
     return scholarshipList;
@@ -21,7 +27,9 @@ export function cleanText(thisScholarship: any) {
     thisScholarship.name = thisScholarship.name.substring(2)
     let link = ""
     let createUrl = false
-    console.log(thisScholarship);
+    if (thisScholarship.href == undefined) {
+        throw ParserException;
+    }
     for (let i=0; i < thisScholarship.href.length; i++) {
         // console.log(thisScholarship.href.substring(i));
         if (!createUrl) {

@@ -7,6 +7,7 @@ import viteLogo from '/vite.svg'
 export default function HomePage() {
     const [scholarships, setScholarships] = useState([]);
     const [currentURL, setCurrentURL] = useState("");
+    const [success, setSuccess] = useState("Press button to scrape web");
     const api_key = import.meta.env.VITE_COHERE_API_KEY;
 
     useEffect(() => {
@@ -17,7 +18,7 @@ export default function HomePage() {
 
     useEffect(() => {
         if (scholarships) {
-            // console.log(scholarships);
+            console.log(scholarships);
         }
     }, [scholarships]);
 
@@ -30,13 +31,20 @@ export default function HomePage() {
             preamble: "You are an AI-assistant chatbot. You are trained to assist users by providing thorough and helpful responses to their queries."
         }
         )
-        setScholarships(parseText(response.text));    
+        let parsedScholarshipList = parseText(response.text);
+        if (parsedScholarshipList.length > 0) {
+            setSuccess("Successfully extracted scholarships");
+            setScholarships(parsedScholarshipList);
+        } else {
+            setSuccess("Please try again");
+        }
     }
 
     const getUrl = async () => {
         let [tab] = await chrome.tabs.query({active: true, currentWindow: true});
         const url = tab.url || "";
         setCurrentURL(url);
+        setSuccess("Loading...");
     }
 
     return (
@@ -55,7 +63,7 @@ export default function HomePage() {
                 scrape website
                 </button>
                 <p>
-                Current Tab: {currentURL}
+                {success}
                 </p>
             </div>
             <p className="read-the-docs">
