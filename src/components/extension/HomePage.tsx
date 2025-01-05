@@ -13,6 +13,7 @@ export default function HomePage() {
     useEffect(() => {
         if (currentURL.length > 0) {
             sendQuery();
+            setCurrentURL("");
         }
     })
 
@@ -53,14 +54,15 @@ export default function HomePage() {
     return (
         <>
             <h1>Navis</h1>
-            <div className="homepage">
-                <p className="read-the-docs">{message}</p>
-                <button className="scanPageButton" onClick={() => getUrl()}>Scan Page</button>
-            </div>
             <div>
                 { success ? (
                     <ScholarshipList data={scholarships}/>
-                ) : null }
+                ) : (
+                    <div className="homepage">
+                        <p className="read-the-docs">{message}</p>
+                        <button className="scanPageButton" onClick={() => getUrl()}>Scan Page</button>
+                    </div>
+                ) }
             </div>
         </>
     )
