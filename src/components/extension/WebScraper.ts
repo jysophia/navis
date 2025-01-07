@@ -24,14 +24,13 @@ export function parseText(fullText: any) {
 }
 
 export function cleanText(thisScholarship: any) {
-    thisScholarship.name = thisScholarship.name.substring(2)
-    let link = ""
-    let createUrl = false
+    thisScholarship.name = thisScholarship.name.substring(2);
+    let link = "";
+    let createUrl = false;
     if (thisScholarship.href == undefined) {
         throw ParserException;
     }
     for (let i=0; i < thisScholarship.href.length; i++) {
-        // console.log(thisScholarship.href.substring(i));
         if (!createUrl) {
             createUrl = startsWithHTTPS(thisScholarship.href.substring(i));
         }
