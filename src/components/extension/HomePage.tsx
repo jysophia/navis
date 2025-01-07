@@ -13,6 +13,7 @@ export default function HomePage() {
     useEffect(() => {
         if (currentURL.length > 0) {
             sendQuery();
+            setCurrentURL("");
         }
     })
 
@@ -47,6 +48,11 @@ export default function HomePage() {
         setSuccess("Loading...");
     }
 
+    const openWebApp = () => {
+        const webAppUrl = process.env.NODE_ENV === "development" ? "http://localhost:5173/#/webapp" : "http://localhost:5173/#/webapp";
+        chrome.tabs.create({ url: webAppUrl });
+    }
+
     return (
         <>
             <div>
@@ -66,6 +72,7 @@ export default function HomePage() {
                 {success}
                 </p>
             </div>
+            <button onClick={() => openWebApp()}>Open Web App</button>
             <p className="read-the-docs">
                 Click on the Vite and React logos to learn more
             </p>
