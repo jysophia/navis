@@ -15,7 +15,7 @@ export function parseText(fullText: any) {
             try {
                 let cleanScholarship = cleanText(scholarship);
                 scholarshipList.push(cleanScholarship);
-            } catch (error: unknown) {
+            } catch (error: any) {
                 return [];
             }
         }

@@ -60,13 +60,13 @@ export default function HomePage() {
         <>
             <h1>Navis</h1>
             <div>
+            <button className="openWebAppButton" onClick={openWebApp}>Open Web App</button>
                 { success ? (
                     <ScholarshipList data={scholarships}/>
                 ) : (
                     <div className="homepage">
                         <p className="read-the-docs">{message}</p>
                         <button className="scanPageButton" onClick={() => getUrl()}>Scan Page</button>
-                        <button className="openWebAppButton" onClick={openWebApp}>Open Web App</button>
                     </div>
                 ) }
             </div>
