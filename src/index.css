@@ -68,7 +68,9 @@ button:focus-visible {
 }
 
 .card {
-  padding: 2em;
+  padding: 5px;
+  border-radius: 8px;
+  border: 1px solid transparent;
   background-color: #e7d9a1;
   border-color: #5777ca;
   justify-content: left;
