@@ -51,10 +51,16 @@ export default function HomePage() {
         setMessage("Loading...");
     }
 
+    const openWebApp = () => {
+        const webAppUrl = process.env.NODE_ENV === "development" ? "http://localhost:5173/#/webapp" : "http://localhost:5173/#/webapp";
+        chrome.tabs.create({ url: webAppUrl });
+    }
+
     return (
         <>
             <h1>Navis</h1>
             <div>
+            <button className="openWebAppButton" onClick={openWebApp}>Open Web App</button>
                 { success ? (
                     <ScholarshipList data={scholarships}/>
                 ) : (
