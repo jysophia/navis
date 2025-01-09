@@ -116,21 +116,25 @@ button:focus-visible {
 .flex-container {
   display: flex;
   width: 1200px;
-  padding-left: 10em;
+  justify-content: space-between;
 }
 .flex-child {
-  flex: 1;
-}  
-.flex-child:first-child {
-  margin-right: 20px;
-}
+  padding-left: 2em;
+} 
 
 .navBarContainer {
+  display: flex;
+  flex-direction: column;
   border-right: 1px solid #2d52a0;
   margin-right: 2em;
+  padding-right: 2em;
 }
 
 .navBarLogo {
   font-size: 20px;
-  padding-right: 2em;
+  padding: 2em;
+}
+
+.navBarOption {
+  padding: 2em;
 }
