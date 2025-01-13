@@ -8,5 +8,8 @@ This project uses React, TypeScript, and Vite to build the end-to-end product, a
 
 ## Prototype
 
+By: Rosie Jeon (UX Designer)\
+LinkedIn: https://www.linkedin.com/in/rosiejeon/
+
 [![Watch the video](https://img.youtube.com/vi/KSH5z-jq7fM/maxresdefault.jpg
 )](https://www.youtube.com/watch?v=KSH5z-jq7fM)
