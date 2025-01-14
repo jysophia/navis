@@ -3,7 +3,7 @@ import { CohereClient } from "cohere-ai";
 import { parseText } from "./WebScraper"
 import ScholarshipList from './ScholarshipList';
 
-export default function HomePage() {
+const HomePage = () => {
     const [scholarships, setScholarships] = useState([]);
     const [currentURL, setCurrentURL] = useState("");
     const [message, setMessage] = useState("Press button to scrape web");
@@ -73,3 +73,5 @@ export default function HomePage() {
         </>
     )
 }
+
+export default HomePage

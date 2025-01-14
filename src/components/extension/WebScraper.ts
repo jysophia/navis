@@ -26,20 +26,18 @@ export function parseText(fullText: any) {
 export function cleanText(thisScholarship: any) {
     thisScholarship.name = thisScholarship.name.substring(2);
     let link = "";
-    let createUrl = false;
-    if (thisScholarship.href == undefined) {
+    if (thisScholarship.href === undefined) {
         throw ParserException;
     }
-    for (let i=0; i < thisScholarship.href.length; i++) {
-        if (!createUrl) {
-            createUrl = startsWithHTTPS(thisScholarship.href.substring(i));
-        }
-        if (createUrl) {
-            if (thisScholarship.href[i] == ']' || thisScholarship.href[i] == ')') {
-                break;
-            } else if (!(thisScholarship.href[i] == '[' || thisScholarship.href[i] == '(' || thisScholarship.href[i] == ' ')) {
-                link += thisScholarship.href[i];
-            }
+    let https = startsWithHTTPS(thisScholarship.href);
+    if (https == "") {
+        throw ParserException;
+    }
+    for (let i=0; i < https.length; i++) {
+        if (thisScholarship.href[i] == ']' || thisScholarship.href[i] == ')') {
+            break;
+        } else if (!(thisScholarship.href[i] == '[' || thisScholarship.href[i] == '(' || thisScholarship.href[i] == ' ')) {
+            link += thisScholarship.href[i];
         }
     }
     thisScholarship.href = link;
@@ -47,9 +45,10 @@ export function cleanText(thisScholarship: any) {
 }
 
 export function startsWithHTTPS(thisHref: string) {
-    let prefix = "";
-    for (let i = 0; i < 5; i++) {
-        prefix += thisHref[i];
+    const startIndex = thisHref.indexOf("https");
+    if (startIndex === -1) {
+        return "";
     }
-    return prefix == "https";
+    console.log(thisHref.substring(startIndex));
+    return thisHref.substring(startIndex);
 }

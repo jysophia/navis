@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev-node": "tsx watch src/server",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -13,18 +14,22 @@
     "axios": "^1.7.9",
     "bootstrap-icons": "^1.11.3",
     "cohere-ai": "^7.15.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "parse5": "^7.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^7.1.1",
+    "remult": "^2.7.28",
+    "tsx": "^4.19.2",
     "vite-plugin-static-copy": "^2.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
     "@types/chrome": "^0.0.287",
-    "@types/node": "^22.10.4",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.6",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
