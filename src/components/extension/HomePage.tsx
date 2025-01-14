@@ -32,7 +32,8 @@ const HomePage = () => {
             preamble: "You are an AI-assistant chatbot. You are trained to assist users by providing thorough and helpful responses to their queries."
         }
         )
-        let parsedScholarshipList = parseText(response.text);
+        let parsedScholarshipList: any = [];
+        parsedScholarshipList = parseText(response.text);
         if (parsedScholarshipList.length > 0) {
             setScholarships(parsedScholarshipList);
             setMessage("Successfully extracted scholarships");
