@@ -11,13 +11,10 @@ app.use(express.json());
 app.use(cors());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dbPath = path.join(__dirname, '../../../db/scholarships.json');
+const dbPath = path.join(__dirname, '../../db/scholarships.json');
 app.post('/api/scholarships', (req, res) => {
-    console.log(dbPath);
-    let scholarship = req.body;
-    console.log('Running fs.outputFilSync');
-    fs.outputFileSync(dbPath, JSON.stringify(scholarship));
-    console.log('Finished running fs.outputFileSync');
+    let scholarships = req.body;
+    fs.outputFileSync(dbPath, JSON.stringify(scholarships, null, 2));
     res.status(200).send('Scholarships added successfully');
 })
 // app.get('/api/hi', (req, res) => {

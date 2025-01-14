@@ -26,21 +26,19 @@ export function parseText(fullText: any) {
 
 export async function writeToDB(scholarshipList: any) {
     console.log('Writing to db...');
-    for (const scholarship of scholarshipList) {
-        try {
-            await fetch('http://localhost:3002/api/scholarships', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(scholarship)
-            });
-        } catch (error: any) {
-            console.error('Error writing to db');
-            break;
-        }
-        console.log('Successfully wrote to db');
+    try {
+        await fetch('http://localhost:3002/api/scholarships', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(scholarshipList)
+        });
+    } catch (error: any) {
+        console.error('Error writing to db');
+        return;
     }
+    console.log('Successfully wrote to db');
 }
 
 export function cleanText(thisScholarship: any) {
