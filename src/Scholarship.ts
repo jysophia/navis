@@ -7,4 +7,5 @@ export class Scholarship {
     name = "";
     href = "";
     description = "";
+    saved = false;
 }

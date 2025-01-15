@@ -10,7 +10,8 @@ export function parseText(fullText: any) {
             let scholarship : Scholarship = {
                 name: currentScholarship[0],
                 href: currentScholarship[1],
-                description: currentScholarship[2]
+                description: currentScholarship[2],
+                saved: false
             }
             try {
                 let cleanScholarship = cleanText(scholarship);
@@ -20,7 +21,6 @@ export function parseText(fullText: any) {
             }
         }
     }
-    writeToDB(scholarshipList);
     return scholarshipList;
 }
 
