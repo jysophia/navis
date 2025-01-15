@@ -30,13 +30,54 @@ app.post('/api/scholarships', async (req, res) => {
     }
 });
 // get all scholarships
-
+app.get("/api/scholarships", async (req, res) => {
+    try {
+        console.log(req.body);
+        const allScholarships = await pool.query("SELECT * FROM scholarships");
+        res.json(allScholarships.rows);
+    } catch (error) {
+        console.error("Error getting scholarships from DB:", error);
+        res.status(500).send("Error getting scholarships from DB");
+    }
+});
 // get a scholarship
-
+app.get("/api/scholarships/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const scholarship = await pool.query("SELECT * FROM scholarships WHERE id = $1", [id]);
+        res.json(scholarship.rows);
+    } catch (error) {
+        console.error("Error getting scholarship from DB:", error);
+        res.status(500).send("Error getting scholarship from DB");
+    }
+});
 // update a scholarship
-
+app.put("/api/scholarships/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { saved } = req.body;
+        await pool.query(
+            "UPDATE scholarships SET saved = $1 WHERE id = $2",
+            [saved, id]
+        );
+        res.status(200).send("Scholarship updated successfully");
+    } catch (error) {
+        console.error("Error updating scholarship in DB:", error);
+        res.status(500).send("Error updating scholarship in DB");
+    }
+});
 // delete a scholarship
-
+app.delete("/api/scholarships/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { saved } = req.body;
+        await pool.query("DELETE FROM scholarships WHERE saved = $1 AND id = $2", [saved, id]);
+        res.status(200).send("Scholarship deleted successfully");
+    } catch (error) {
+        console.error("Error deleting scholarship from DB:", error);
+        res.status(500).send("Error deleting scholarship from DB");
+    }
+});
 
 
 app.listen(port, () => console.log("Server started on port " + port));
