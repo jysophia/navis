@@ -17,12 +17,6 @@ const HomePage = () => {
         }
     })
 
-    useEffect(() => {
-        if (scholarships) {
-            console.log(scholarships);
-        }
-    }, [scholarships]);
-
     const sendQuery = async () => {
         const client = new CohereClient({ token: api_key });
         const response = await client.chat(
@@ -34,7 +28,10 @@ const HomePage = () => {
         )
         let parsedScholarshipList: any = [];
         parsedScholarshipList = parseText(response.text);
-        if (parsedScholarshipList.length > 0) {
+        if (parsedScholarshipList === undefined) {
+            setMessage("Please try again");
+            return
+        } else if (parsedScholarshipList.length > 0) {
             setScholarships(parsedScholarshipList);
             setMessage("Successfully extracted scholarships");
             setSuccess(true);
