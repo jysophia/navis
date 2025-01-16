@@ -3,7 +3,7 @@ import { CohereClient } from "cohere-ai";
 import { parseText } from "./WebScraper"
 import ScholarshipList from './ScholarshipList';
 
-export default function HomePage() {
+const HomePage = () => {
     const [scholarships, setScholarships] = useState([]);
     const [currentURL, setCurrentURL] = useState("");
     const [message, setMessage] = useState("Press button to scrape web");
@@ -17,12 +17,6 @@ export default function HomePage() {
         }
     })
 
-    useEffect(() => {
-        if (scholarships) {
-            console.log(scholarships);
-        }
-    }, [scholarships]);
-
     const sendQuery = async () => {
         const client = new CohereClient({ token: api_key });
         const response = await client.chat(
@@ -32,8 +26,12 @@ export default function HomePage() {
             preamble: "You are an AI-assistant chatbot. You are trained to assist users by providing thorough and helpful responses to their queries."
         }
         )
-        let parsedScholarshipList = parseText(response.text);
-        if (parsedScholarshipList.length > 0) {
+        let parsedScholarshipList: any = [];
+        parsedScholarshipList = parseText(response.text);
+        if (parsedScholarshipList === undefined) {
+            setMessage("Please try again");
+            return
+        } else if (parsedScholarshipList.length > 0) {
             setScholarships(parsedScholarshipList);
             setMessage("Successfully extracted scholarships");
             setSuccess(true);
@@ -73,3 +71,5 @@ export default function HomePage() {
         </>
     )
 }
+
+export default HomePage

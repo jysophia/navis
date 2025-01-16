@@ -1,5 +1,11 @@
-export interface Scholarship {
-    name: string;
-    href: string;
-    description: string;
+import { Entity } from "remult";
+
+@Entity("scholarships", {
+    allowApiCrud: true,
+})
+export class Scholarship {
+    name = "";
+    href = "";
+    description = "";
+    saved = false;
 }

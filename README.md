@@ -4,7 +4,7 @@ Navis is a Chrome extension that helps users find scholarships that are the righ
 
 ## Tech Stack
 
-This project uses React, TypeScript, and Vite to build the end-to-end product, as well as Cohere AI to retrieve the summarized scholarship information. The current next step is to establish a database using PostgreSQL and integrate the Figma designs.
+This project uses React, TypeScript, and Vite for frontend development, Cohere Command R to retrieve the summarized scholarship information, Node.js and TypeScript for server development, PostgreSQL for the database to store scholarship information, and Figma to integrate UX designs.
 
 ## Prototype
 

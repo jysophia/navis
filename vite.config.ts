@@ -24,4 +24,5 @@ export default defineConfig({
     },
   },
   publicDir: 'public',
+  server: { proxy: { "/api": "http://localhost:3002" } },
 });

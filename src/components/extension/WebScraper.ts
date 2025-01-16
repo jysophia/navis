@@ -10,7 +10,8 @@ export function parseText(fullText: any) {
             let scholarship : Scholarship = {
                 name: currentScholarship[0],
                 href: currentScholarship[1],
-                description: currentScholarship[2]
+                description: currentScholarship[2],
+                saved: false
             }
             try {
                 let cleanScholarship = cleanText(scholarship);
@@ -23,23 +24,38 @@ export function parseText(fullText: any) {
     return scholarshipList;
 }
 
+export async function writeToDB(scholarshipList: any) {
+    console.log('Writing to db...');
+    try {
+        await fetch('http://localhost:3002/api/scholarships', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(scholarshipList)
+        });
+    } catch (error: any) {
+        console.error('Error writing to db');
+        return;
+    }
+    console.log('Successfully wrote to db');
+}
+
 export function cleanText(thisScholarship: any) {
     thisScholarship.name = thisScholarship.name.substring(2);
     let link = "";
-    let createUrl = false;
-    if (thisScholarship.href == undefined) {
+    if (thisScholarship.href === undefined) {
         throw ParserException;
     }
-    for (let i=0; i < thisScholarship.href.length; i++) {
-        if (!createUrl) {
-            createUrl = startsWithHTTPS(thisScholarship.href.substring(i));
-        }
-        if (createUrl) {
-            if (thisScholarship.href[i] == ']' || thisScholarship.href[i] == ')') {
-                break;
-            } else if (!(thisScholarship.href[i] == '[' || thisScholarship.href[i] == '(' || thisScholarship.href[i] == ' ')) {
-                link += thisScholarship.href[i];
-            }
+    let https = startsWithHTTPS(thisScholarship.href);
+    if (https == "") {
+        throw ParserException;
+    }
+    for (let i=0; i < https.length; i++) {
+        if (thisScholarship.href[i] == ']' || thisScholarship.href[i] == ')') {
+            break;
+        } else if (!(thisScholarship.href[i] == '[' || thisScholarship.href[i] == '(' || thisScholarship.href[i] == ' ')) {
+            link += thisScholarship.href[i];
         }
     }
     thisScholarship.href = link;
@@ -47,9 +63,9 @@ export function cleanText(thisScholarship: any) {
 }
 
 export function startsWithHTTPS(thisHref: string) {
-    let prefix = "";
-    for (let i = 0; i < 5; i++) {
-        prefix += thisHref[i];
+    const startIndex = thisHref.indexOf("https");
+    if (startIndex === -1) {
+        return "";
     }
-    return prefix == "https";
+    return thisHref.substring(startIndex);
 }
