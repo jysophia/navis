@@ -22,5 +22,13 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "src/vite-env.d.ts", "src/server/Server.ts"]
+  "include": [
+    "src",
+    "src/vite-env.d.ts",
+    "src/server/Server.ts",
+    "src/**/*.ts",
+    "test/**/*.ts"],
+  "exclude": [
+    "node_modules"
+  ]
 }

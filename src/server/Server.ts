@@ -1,7 +1,7 @@
 import express from 'express';
 
 class Server {
-    private app;
+    public app;
 
     constructor() {
         this.app = express();
