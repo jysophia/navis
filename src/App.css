@@ -35,8 +35,16 @@
 
 .homepage {
   padding: 2em;
+  color: #FFFCFB;
+  justify-content: left;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .read-the-docs {
-  color: #888;
+  color: #132025;
+  font-size: large;
 }
