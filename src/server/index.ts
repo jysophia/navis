@@ -3,7 +3,7 @@ import cors from 'cors';
 import { pool } from './db';
 
 const app = express();
-const port = process.env.VITE_SERVER_PORT ? parseInt(process.env.VITE_SERVER_PORT) : 3002;
+const port = process.env.VITE_SERVER_PORT ? parseInt(process.env.VITE_SERVER_PORT) : 3000;
 
 // middleware
 app.use(express.json());

@@ -32,146 +32,7 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-/* button:hover {
-  border-color: #646cff;
-} */
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-.card {
-  flex-direction: row;
-  padding: 5px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  background-color: #FFFCFB;
-  justify-content: left;
-  align-items: left;
-  width: 100%;
-  transition: height 0.3s ease, max-height 0.3s ease;
-  overflow: hidden;
-
-}
-
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.card-header .bookmark {
-  margin-left: 0.2rem;
-}
-
-.card-body {
-  display: flex;
-  align-items: left;
-  justify-content: space-between;
-}
-
-.expandToggleButton {
-  background-color: transparent;
-  border: none;
-  color: #2d52a0;
-  cursor: pointer;
-  font-size: 1em;
-  padding: 0;
-  margin: 0;
-  text-decoration: underline;
-}
-
-.scanPageButton {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  color: #ffffff;
-  background-color: #2E7FAB;
-  height: 36px;
-  width: 169px;
-  cursor: pointer;
-}
-
-.scanPageButton:hover {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  color: #132025;
-  background-color: #FA8E00;
-  height: 36px;
-  width: 169px;
-  cursor: pointer;
-  transition: background-color 0.25s;
-}
-
-.flex-container {
-  display: flex;
-  width: 1200px;
-  justify-content: space-between;
-}
-.flex-child {
-  padding-left: 2em;
-} 
-
-.navBarContainer {
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid #2d52a0;
-  margin-right: 2em;
-  padding-right: 2em;
-}
-
-.navBarLogo {
-  font-size: 20px;
-  padding: 2em;
-}
-
-.navBarOption {
-  padding: 2em;
-}
-
-.navis_title {
-  align-items: left;
-  display: flex;
-  justify-content: left;
-  margin-left: 0;
-  margin-top: 0;
-  margin-bottom: 10px;
-  width: auto;
-  height: auto;
+  font-size: large;
 }
 
 .banner_success {
@@ -254,6 +115,168 @@ button:focus-visible {
   }
 }
 
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+/* button:hover {
+  border-color: #646cff;
+} */
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.card {
+  flex-direction: row;
+  padding: 5px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: #FFFCFB;
+  justify-content: left;
+  align-items: left;
+  width: 100%;
+  transition: height 0.3s ease, max-height 0.3s ease;
+  overflow: hidden;
+
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header .bookmark {
+  margin-left: 0.2rem;
+}
+
+.card-body {
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+}
+
+.card-tail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.expandToggleButton {
+  background-color: transparent;
+  border: none;
+  color: #132025;
+  cursor: pointer;
+  font-size: 1em;
+  font-style: italic;
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+}
+
+.flex-container {
+  display: flex;
+  width: 1200px;
+  justify-content: space-between;
+}
+.flex-child {
+  padding-left: 2em;
+} 
+
+.goToApplicationButton {
+  background-color: #D5E7EC;
+  color: #132025;
+}
+
+.goToApplicationButton .expandToggleButton {
+  margin-left: 1rem;
+}
+
+.goToApplicationButton:hover {
+  background-color: #6a97a4;
+  color: #132025;
+  transition: background-color 0.25s;
+}
+
+.navBarContainer {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #2d52a0;
+  margin-right: 2em;
+  padding-right: 2em;
+}
+
+.navBarLogo {
+  font-size: 20px;
+  padding: 2em;
+}
+
+.navBarOption {
+  padding: 2em;
+}
+
+.navis_title {
+  align-items: left;
+  display: flex;
+  justify-content: left;
+  margin-left: 0;
+  margin-top: 0;
+  margin-bottom: 10px;
+  width: auto;
+  height: auto;
+}
+
+.result-subheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: large;
+  color: #132025;
+  padding: 0;
+  margin: 0;
+}
+
+.result-text .result-add-db-btn {
+  margin-left: 1rem;
+}
+
+.result-text {
+  color: #132025;
+  font-size: 1em;
+  font-style: italic;
+  padding: 0;
+  margin: 0;
+}
+
 .scan_section {
   flex-direction: column;
   background-color: #FFFCFB;
@@ -262,4 +285,33 @@ button:focus-visible {
   justify-content: space-between;
   height: 100%;
   width: 100%;
+}
+
+.scanPageButton {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: #ffffff;
+  background-color: #2E7FAB;
+  height: 36px;
+  width: 169px;
+  cursor: pointer;
+}
+
+.scanPageButton:hover {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: #132025;
+  background-color: #FA8E00;
+  height: 36px;
+  width: 169px;
+  cursor: pointer;
+  transition: background-color 0.25s;
 }
