@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Scholarship 1",
+        "href": "https://www.fake_url.com",
+        "description": "This is a scholarship",
+        "saved": true
+    },
+    {
+        "name": "Scholarship 2",
+        "href": "https://www.fake_url2.com",
+        "description": "This is a scholarship 2",
+        "saved": true
+    }
+]

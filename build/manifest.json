@@ -3,8 +3,14 @@
     "name": "React Chrome Extension",
     "version": "1.0.0",
     "description": "A simple React app as a Chrome extension",
+    "icons": {
+      "128": "navisIcon.png"
+    },
     "action": {
-      "default_popup": "index.html"
+      "default_popup": "index.html",
+      "default_icon": {
+        "128": "navisIcon.png"
+      }
     },
     "permissions": [
       "tabs",

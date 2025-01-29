@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react'
 import { CohereClient } from "cohere-ai";
 import { parseText } from "./WebScraper"
+import title_dark from "../../assets/navisTitleDefault.svg";
+import title_light from "../../assets/navisTitleSuccess.svg";
+import exit_dark from "../../assets/exit_dark.svg";
+import exit_light from "../../assets/exit_light.png";
 import ScholarshipList from './ScholarshipList';
 
 const HomePage = () => {
     const [scholarships, setScholarships] = useState([]);
     const [currentURL, setCurrentURL] = useState("");
-    const [message, setMessage] = useState("Press button to scrape web");
+    const [message, setMessage] = useState("Click below to start scanning!");
     const [success, setSuccess] = useState(false);
     const api_key = import.meta.env.VITE_COHERE_API_KEY;
 
@@ -46,7 +50,7 @@ const HomePage = () => {
         let [tab] = await chrome.tabs.query({active: true, currentWindow: true});
         const url = tab.url || "";
         setCurrentURL(url);
-        setMessage("Loading...");
+        setMessage("One moment, Navis is collecting Scholarship Information...");
     }
 
     const openWebApp = () => {
@@ -54,15 +58,40 @@ const HomePage = () => {
         chrome.tabs.create({ url: webAppUrl });
     }
 
+    const closeExtension = () => {
+        window.close();
+    }
+
     return (
         <>
-            <h1>Navis</h1>
+            <div className="homepage">
+                { success ? (
+                    <div className="banner_success">
+                        <img src={title_light} alt="Navis" className="navis_title"></img>
+                        <button className="openWebAppButton" onClick={openWebApp}>
+                            Go To Dashboard
+                        </button>
+                        <button className="exit" onClick={closeExtension}>
+                            <img src={exit_light} alt="Exit" className="exit"></img>
+                        </button>
+                    </div>
+                ) : (
+                    <div className="banner_default">
+                        <img src={title_dark} alt="Navis" className="navis_title"></img>
+                        <button className="openWebAppButton" onClick={openWebApp}>
+                            Go To Dashboard
+                        </button>
+                        <button className="exit" onClick={closeExtension}>
+                            <img src={exit_dark} alt="Exit" className="exit"></img>
+                        </button>
+                    </div>
+                )}
+            </div>
             <div>
-            <button className="openWebAppButton" onClick={openWebApp}>Open Web App</button>
                 { success ? (
                     <ScholarshipList data={scholarships}/>
                 ) : (
-                    <div className="homepage">
+                    <div className="scan_section">
                         <p className="read-the-docs">{message}</p>
                         <button className="scanPageButton" onClick={() => getUrl()}>Scan Page</button>
                     </div>

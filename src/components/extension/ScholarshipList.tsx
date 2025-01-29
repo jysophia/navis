@@ -1,6 +1,10 @@
 import '../../index.css';
 import { useState } from 'react';
 import { writeToDB } from './WebScraper';
+import ParserException from "./ParserException"
+import cardDivider from '../../assets/cardDivider.svg';
+import bookmarkSaved from '../../assets/bookmarkSaved.svg';
+import bookmarkUnsaved from '../../assets/bookmarkUnsaved.svg';
 
 const ScholarshipList = ({data}: any) => {
     const [toBeSavedList, setToBeSavedList] = useState(data);
@@ -13,11 +17,14 @@ const ScholarshipList = ({data}: any) => {
         }));
     }
 
-    const truncateText = (text: string, length: number) => {
-        if (text.length <= length) {
+    const truncateText = (text: string) => {
+        if (typeof text !== 'string') {
+            throw ParserException;
+        }
+        if (text.length <= 100) {
             return text;
         }
-        return text.substring(0, length) + "...";
+        return text.substring(0, 100) + "...";
     }
 
     const handleCheckboxChange = (index: number) => {
@@ -37,14 +44,26 @@ const ScholarshipList = ({data}: any) => {
             {
                 toBeSavedList.map((scholarship: any, index: number) => (
                     <div className="card" key={index}>
-                        <input type="checkbox" checked={scholarship.saved} onChange={() => handleCheckboxChange(index)}/>
-                        <p><a href={scholarship.url}>{scholarship.name}</a></p>
-                        <p>
-                            {expanded[index] ? scholarship.description : truncateText(scholarship.description, 100)}
-                            <button className="expandToggleButton" onClick={() => toggleExpand(index)}>
-                                {expanded[index] ? "Collapse all" : "See more"}
-                            </button>
-                        </p>
+                        <div className="card-header">
+                            <p><a href={scholarship.url}>{scholarship.name}</a></p>
+                            <img
+                                onClick={() => handleCheckboxChange(index)} style={{ cursor: 'pointer'}}
+                                src={scholarship.saved ? bookmarkSaved : bookmarkUnsaved}
+                                alt={scholarship.saved ? "[X]" : "[ ]"}
+                                className="bookmark"
+                                height={36}
+                                width={36}
+                            />
+                        </div>
+                        <div className="card-body">
+                            <p>
+                                {expanded[index] ? scholarship.description : truncateText(scholarship.description)}
+                                <button className="expandToggleButton" onClick={() => toggleExpand(index)}>
+                                    {expanded[index] ? "Collapse all" : "See more"}
+                                </button>
+                            </p>
+                        </div>
+                        <img src={cardDivider}/>
                     </div>
                 ))
             }
