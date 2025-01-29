@@ -33,7 +33,6 @@ body {
 
 h1 {
   font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {
@@ -69,15 +68,44 @@ button:focus-visible {
 }
 
 .card {
+  flex-direction: row;
   padding: 5px;
   border-radius: 8px;
   border: 1px solid transparent;
   background-color: #FFFCFB;
   justify-content: left;
-  align-items: start;
-  width: 200px;
+  align-items: left;
+  width: 100%;
   transition: height 0.3s ease, max-height 0.3s ease;
   overflow: hidden;
+
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header .bookmark {
+  margin-left: 0.2rem;
+}
+
+.card-body {
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+}
+
+.expandToggleButton {
+  background-color: transparent;
+  border: none;
+  color: #2d52a0;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
 }
 
 .scanPageButton {
@@ -107,17 +135,6 @@ button:focus-visible {
   width: 169px;
   cursor: pointer;
   transition: background-color 0.25s;
-}
-
-.expandToggleButton {
-  background-color: transparent;
-  border: none;
-  color: #2d52a0;
-  cursor: pointer;
-  font-size: 1em;
-  padding: 0;
-  margin: 0;
-  text-decoration: underline;
 }
 
 .flex-container {
@@ -175,17 +192,23 @@ button:focus-visible {
 
   .openWebAppButton {
     border-radius: 8px;
-    border: 1px solid #FA8E00;
     color: #132025;
     background-color: #FA8E00;
     padding: 0.6em 1.2em;
     margin-right: -8em;
   }
 
+  .openWebAppButton:hover {
+    background-color: #FFF5E8;
+    color: #132025;
+    cursor: pointer;
+    transition: background-color 0.25s;
+  }
+
   .exit {
     color: #38515E;
     background-color: transparent;
-    margin: 0.60em;
+    margin: 0.80em;
     padding: 0rem 0rem;
   }
 }
@@ -226,7 +249,7 @@ button:focus-visible {
   .exit {
     color: #FFFCFB;
     background-color: transparent;
-    margin: 0.60em;
+    margin: 0.80em;
     padding: 0rem 0rem;
   }
 }

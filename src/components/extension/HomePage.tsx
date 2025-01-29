@@ -59,7 +59,7 @@ const HomePage = () => {
     }
 
     const closeExtension = () => {
-        // Close the extension
+        window.close();
     }
 
     return (
