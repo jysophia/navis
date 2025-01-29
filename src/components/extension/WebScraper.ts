@@ -26,8 +26,10 @@ export function parseText(fullText: any) {
 
 export async function writeToDB(scholarshipList: any) {
     console.log('Writing to db...');
+    const port = process.env.PORT || 3000;
+    const url = `http://localhost:${port}/api/scholarships`;
     try {
-        await fetch('http://localhost:3002/api/scholarships', {
+        await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
