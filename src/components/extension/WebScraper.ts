@@ -24,25 +24,6 @@ export function parseText(fullText: any) {
     return scholarshipList;
 }
 
-export async function writeToDB(scholarshipList: any) {
-    console.log('Writing to db...');
-    const port = process.env.PORT || 3000;
-    const url = `http://localhost:${port}/api/scholarships`;
-    try {
-        await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(scholarshipList)
-        });
-    } catch (error: any) {
-        console.error('Error writing to db');
-        return;
-    }
-    console.log('Successfully wrote to db');
-}
-
 export function cleanText(thisScholarship: any) {
     thisScholarship.name = thisScholarship.name.substring(2);
     let link = "";
@@ -70,4 +51,45 @@ export function startsWithHTTPS(thisHref: string) {
         return "";
     }
     return thisHref.substring(startIndex);
+}
+
+export async function writeToDB(scholarshipList: any) {
+    console.log('Writing to db...');
+    const port = process.env.PORT || 3000;
+    const url = `http://localhost:${port}/api/scholarships`;
+    try {
+        await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(scholarshipList)
+        });
+    } catch (error: any) {
+        console.error('Error writing to db');
+        return;
+    }
+    console.log('Successfully wrote to db');
+}
+
+export async function deleteFromDB(scholarshipList: any) {
+    console.log('Deleting items from db...');
+    const port = 3000;
+    for (const scholarship of scholarshipList) {
+        const id = scholarship.id as string;
+        const url = `http://localhost:${port}/api/scholarships/${id}`;
+        try {
+            await fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+        } catch (error : any) {
+            console.error('Error deleting items from db: ', error);
+            return;
+        }
+    }
+    
+    console.log('Successfully removed items from db');
 }

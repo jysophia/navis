@@ -180,7 +180,7 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 5em;
+  padding: 1em 1em;
   height: 100%;
   width: 100%;
 }
@@ -281,10 +281,19 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.preview-container {
+  flex-grow: 1; /* this takes up the remaining space */
+  align-items: center;
+  display: flex;
   margin-left: 1em;
   padding: 5em;
   height: 100%;
   width: 100%;
+  overflow-y: auto;
 }
 
 .profile-btn {
@@ -323,6 +332,18 @@ button:focus-visible {
   font-style: italic;
   padding: 0;
   margin: 0;
+}
+
+.saved-scholarships-container {
+  position: fixed;
+  top: 0em;
+  left: 180px;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 100vh;
+  overflow-y: auto;
+  padding-right: 30px;
 }
 
 .scan_section {
@@ -365,9 +386,11 @@ button:focus-visible {
 }
 
 .webAppLandingPage {
-  flex-direction: column;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1em 1em;
   height: 100%;
   width: 100%;
 }

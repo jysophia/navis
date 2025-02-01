@@ -1,5 +1,5 @@
 import Navbar from './Navbar';
-import useMediaQuery from '../../hooks/useMediaQuery';
+import useMediaQuery from '../../utils/UseMediaQuery';
 import navisIcon from '../../assets/navisIcon.svg';
 import { useState } from 'react';
 import exit from '../../assets/exit_dark.svg';

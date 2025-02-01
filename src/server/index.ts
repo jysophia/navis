@@ -14,11 +14,11 @@ app.post('/api/scholarships', async (req, res) => {
     let scholarships = req.body;
     try {
         for (const scholarship of scholarships) {
-            const { name, url, description, saved } = scholarship;
+            const { name, href, description, saved } = scholarship;
             console.log('Awaiting pool.query()');
             await pool.query(
                 'INSERT INTO scholarships (name, url, description, saved) VALUES ($1, $2, $3, $4) RETURNING *',
-                [name, url, description, saved]
+                [name, href, description, saved]
             );
             console.log('Inserted scholarship:', scholarship);
         }
@@ -70,8 +70,7 @@ app.put("/api/scholarships/:id", async (req, res) => {
 app.delete("/api/scholarships/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const { saved } = req.body;
-        await pool.query("DELETE FROM scholarships WHERE saved = $1 AND id = $2", [saved, id]);
+        await pool.query("DELETE FROM scholarships WHERE id = $1", [id]);
         res.status(200).send("Scholarship deleted successfully");
     } catch (error) {
         console.error("Error deleting scholarship from DB:", error);
