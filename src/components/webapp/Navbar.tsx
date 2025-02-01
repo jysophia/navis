@@ -1,9 +1,13 @@
-import { Link as ReactLink } from 'react-router-dom';
+import { Link as ReactLink, useLocation } from 'react-router-dom';
 import navisTitleDefault from '../../assets/navisTitleDefault.svg';
-import profile from '../../assets/user.svg';
+import profileDark from '../../assets/userDark.svg';
+import profileLight from '../../assets/userLight.svg'
 import navbarDivider from '../../assets/navbarDivider.svg';
 
 const Navbar = () => {
+    const location = useLocation();
+    const currentPath = location.pathname;
+
   return (
     <>
         <div className="navBarContainer fixed">
@@ -13,7 +17,9 @@ const Navbar = () => {
                 </div>
                 <div className="navBarMenuItems">
                     <button className="profile-btn">
-                        <img src={profile} alt="profile" className="profile-icon"/>
+                        <ReactLink to="/webapp">
+                            <img src={currentPath === '/webapp' ? profileDark : profileLight } alt="profile" className="profile-icon"/>
+                        </ReactLink>
                     </button>
                     <i className="bi bi-bell navBarOption"></i>
                     <i className="bi bi-bookmark navBarOption"></i>

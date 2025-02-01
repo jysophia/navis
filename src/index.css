@@ -225,6 +225,10 @@ button:focus-visible {
 }
 
 .navBarContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
   align-items: left;
   display: flex;
   flex-direction: row;
