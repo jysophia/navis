@@ -10,7 +10,7 @@ function App() {
     <HashRouter>
         <Routes>
           <Route path="/" element={<HomePage/>}/>
-          <Route path="/webapp" element={<WebApp/>}/>
+          <Route path="/webapp/*" element={<WebApp/>}/>
         </Routes>
     </HashRouter>
     </>

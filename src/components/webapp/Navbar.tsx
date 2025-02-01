@@ -1,15 +1,9 @@
-import { SelectedPage } from '../../shared/types';
-import Link from './Link';
+import { Link as ReactLink } from 'react-router-dom';
 import navisTitleDefault from '../../assets/navisTitleDefault.svg';
 import profile from '../../assets/user.svg';
 import navbarDivider from '../../assets/navbarDivider.svg';
 
-type Props = {
-    selectedPage: SelectedPage;
-    setSelectedPage: (value: SelectedPage) => void;
-}
-
-const Navbar = ({selectedPage, setSelectedPage}: Props) => {
+const Navbar = () => {
   return (
     <>
         <div className="navBarContainer fixed">
@@ -23,13 +17,9 @@ const Navbar = ({selectedPage, setSelectedPage}: Props) => {
                     </button>
                     <i className="bi bi-bell navBarOption"></i>
                     <i className="bi bi-bookmark navBarOption"></i>
-                    <i className="bi bi-list-task navBarOption">
-                        <Link 
-                            page={SelectedPage.List}
-                            selectedPage={selectedPage}
-                            setSelectedPage={setSelectedPage}
-                        ></Link>
-                    </i>
+                        <ReactLink to="/webapp/list">
+                            <i className="bi bi-list-task navBarOption"></i>
+                        </ReactLink>
                 </div>
                 
             </div>
@@ -41,4 +31,4 @@ const Navbar = ({selectedPage, setSelectedPage}: Props) => {
   )
 }
 
-export default Navbar;
+export default Navbar
