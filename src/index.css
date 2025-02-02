@@ -155,7 +155,7 @@ button:focus-visible {
   padding: 5px;
   border-radius: 8px;
   border: 1px solid transparent;
-  background-color: #FFFCFB;
+  /* background-color: #FFFCFB; */
   justify-content: left;
   align-items: left;
   width: 100%;
@@ -189,10 +189,13 @@ button:focus-visible {
 .calendar {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
   justify-content: space-between;
-  padding: 1em 1em;
-  height: 100%;
-  width: 100%;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
 }
 
 .expandToggleButton {
@@ -208,13 +211,18 @@ button:focus-visible {
 }
 
 .flex-container {
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  position: fixed;
   align-items: center;
   display: flex;
   flex-direction: row;
-  height: 100%;
-  width: 100%;
-  justify-content: space-between;
+  height: 100vh;
+  width: 100vw;
 }
+
 .flex-child {
   padding-left: 2em;
 } 
@@ -235,14 +243,15 @@ button:focus-visible {
 }
 
 .navBarContainer {
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  align-items: left;
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
+  width: 145px;
+  background-color: #FFFCFB;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 .navBarInnerContainer {
@@ -287,25 +296,24 @@ button:focus-visible {
 }
 
 .page-container {
-  align-items: center;
   display: flex;
-  justify-content: space-between;
   flex-direction: row;
-  height: 100vh;
+  margin-left: 145px;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .preview-container {
   flex-grow: 1;
   display: flex;
-  position: fixed;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  height: 100%;
-  top: 0;
-  right: 0;
-  width: 60%;
-  background-color:#fbecd8;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
   overflow-y: auto;
+  background-color:#fbecd8;
 }
 
 .profile-btn {
@@ -346,16 +354,38 @@ button:focus-visible {
   margin: 0;
 }
 
-.saved-scholarships-container {
-  position: fixed;
-  top: 0em;
-  left: 180px;
+.saved-scholarships-body {
   display: flex;
   flex-direction: column;
-  width: 25%;
+  align-items: center;
+  width: 90%;
+  padding-left: 1rem;
+}
+
+.saved-scholarships-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   height: 100vh;
+  width: 50%;
+  padding-right: 10px;
   overflow-y: auto;
-  padding-right: 30px;
+}
+
+.saved-scholarships-header1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+}
+
+.saved-scholarships-header2 {
+  display: flex;
+  flex-direction: row;
 }
 
 .saved-scholarships-landing {
@@ -407,12 +437,13 @@ button:focus-visible {
   transition: background-color 0.25s;
 }
 
-.webAppLandingPage {
+.webapp-landing-page {
+  flex-grow: 1;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1em 1em;
-  height: 100%;
-  width: 100%;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
 }

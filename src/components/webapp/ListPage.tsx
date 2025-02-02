@@ -6,7 +6,7 @@ import ParserException from "../extension/ParserException";
 import cardDivider from '../../assets/cardDivider.svg';
 import bookmarkSaved from '../../assets/bookmarkSaved.svg';
 import bookmarkUnsaved from '../../assets/bookmarkUnsaved.svg';
-import navisLogo from '../../../public/navisLogo.png';
+import navisLogo from '../../assets/navisLogo.svg';
 
 const ListPage = () => {
     const [scholarships, setScholarships] = useState<Scholarship[]>([]);
@@ -93,50 +93,46 @@ const ListPage = () => {
         <>
             <div className="page-container">
                 <div className="saved-scholarships-container">
-                    <div className="result-header">
+                    <div className="saved-scholarships-header1">
                         <h1 className="result-title">Saved Scholarships</h1>
-                    </div>
-                    <div className="result-subheader">
-                        <p className="result-text">Showing {numberOfScholarships} results</p>
-                        <button onClick={deleteScholarships} className="result-add-db-btn">Delete Unselected Items</button>
-                    </div>
-                    <div className="saved-scholarships-header">
-                        <div className="saved-scholarships-body">
-                            {scholarships.map((scholarship: any, index: number) => (
-                                <div className="card" key={index}>
-                                <div className="card-header">
-                                    <p style={{ cursor: 'pointer' }} onClick={() => openScholarshipSite(index)}><a href={scholarship.url}>{scholarship.name}</a></p>
-                                    <img
-                                        onClick={() => handleCheckboxChange(index)} style={{ cursor: 'pointer'}}
-                                        src={scholarship.saved ? bookmarkSaved : bookmarkUnsaved}
-                                        alt={scholarship.saved ? "[X]" : "[ ]"}
-                                        className="bookmark"
-                                        height={36}
-                                        width={36}
-                                    />
-                                </div>
-                                <div className="card-body">
-                                    <p>{expanded[index] ? scholarship.description : truncateText(scholarship.description)}</p>
-                                </div>
-                                <div className="card-tail">
-                                    <button className="expandToggleButton" onClick={() => toggleExpand(index)}>
-                                        {expanded[index] ? "Collapse all" : "See more"}
-                                    </button>
-                                    <button className="goToApplicationButton" onClick={() => goToApplication(index)}>
-                                        Go to Application
-                                    </button>
-                                </div>
-                                <img src={cardDivider}/>
-                            </div>
-                            ))}
+                        <div className="saved-scholarships-header2">
+                            <p className="result-text">Showing {numberOfScholarships} results</p>
+                            <button onClick={deleteScholarships} className="result-add-db-btn">Delete Unselected Items</button>
                         </div>
+                    </div>
+                    <div className="saved-scholarships-body">
+                        {scholarships.map((scholarship: any, index: number) => (
+                            <div className="card" key={index}>
+                            <div className="card-header">
+                                <p style={{ cursor: 'pointer' }} onClick={() => openScholarshipSite(index)}><a href={scholarship.url}>{scholarship.name}</a></p>
+                                <img
+                                    onClick={() => handleCheckboxChange(index)} style={{ cursor: 'pointer'}}
+                                    src={scholarship.saved ? bookmarkSaved : bookmarkUnsaved}
+                                    alt={scholarship.saved ? "[X]" : "[ ]"}
+                                    className="bookmark"
+                                    height={36}
+                                    width={36}
+                                />
+                            </div>
+                            <div className="card-body">
+                                <p>{expanded[index] ? scholarship.description : truncateText(scholarship.description)}</p>
+                            </div>
+                            <div className="card-tail">
+                                <button className="expandToggleButton" onClick={() => toggleExpand(index)}>
+                                    {expanded[index] ? "Collapse all" : "See more"}
+                                </button>
+                                <button className="goToApplicationButton" onClick={() => goToApplication(index)}>
+                                    Go to Application
+                                </button>
+                            </div>
+                            <img src={cardDivider}/>
+                        </div>
+                        ))}
                     </div>
                 </div>
                 <div className="preview-container">
                     {isPreviewSelected ? (
-                        <div>
-                            <iframe src={previewScholarshipSite} title="Scholarship Preview" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" width={840} height={785} />
-                        </div>
+                        <iframe src={previewScholarshipSite} title="Scholarship Preview" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" width="100%" height="100%" />
                     ) : (
                         <div className="saved-scholarships-landing">
                             <img src={navisLogo} className="navis-logo-landing" height={100} width={70}></img>

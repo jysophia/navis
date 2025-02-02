@@ -8,12 +8,10 @@ export default function WebApp(){
     return (
         <div className="flex-container">
             <NavbarToggle />
-            <div className="page-container">
-                <Routes>
-                    <Route path="/" element={<HomePage />}/>
-                    <Route path="/list" element={<ListPage/>}/>
-                </Routes>
-            </div>
+            <Routes>
+                <Route path="/" element={<HomePage />}/>
+                <Route path="/list" element={<ListPage/>}/>
+            </Routes>
         </div>
     )
 }

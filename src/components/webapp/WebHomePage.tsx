@@ -5,7 +5,7 @@ const WebHomePage = () => {
     return (
         <>
             <div className="page-container">
-                <div className="webAppLandingPage">
+                <div className="webapp-landing-page">
                     <img src='/public/navisLogo.png' />
                     <h1>Hey Navis,</h1>
                     <h2>You added 1 new scholarship! Go check it out</h2>
