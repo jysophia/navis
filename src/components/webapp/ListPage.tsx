@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'react';
 import '../../index.css';
-import ParserException from "../extension/ParserException";
+import { useEffect, useState } from 'react';
 import { Scholarship } from "../../Scholarship";
+import { deleteFromDB } from '../extension/WebScraper';
+import ParserException from "../extension/ParserException";
 import cardDivider from '../../assets/cardDivider.svg';
 import bookmarkSaved from '../../assets/bookmarkSaved.svg';
 import bookmarkUnsaved from '../../assets/bookmarkUnsaved.svg';
-import { deleteFromDB } from '../extension/WebScraper';
+import navisLogo from '../../../public/navisLogo.png';
 
 const ListPage = () => {
     const [scholarships, setScholarships] = useState<Scholarship[]>([]);
     const [toBeUnsavedList, setToBeUnsavedList] = useState<Scholarship[]>(scholarships);
     const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
     const [numberOfScholarships, setNumberOfScholarships] = useState(0);
-    const [previewScholarshipSite, setPreviewScholarshipSite] = useState<string | null>(null);
+    const [isPreviewSelected, setIsPreviewSelected] = useState<boolean>(false);
+    const [previewScholarshipSite, setPreviewScholarshipSite] = useState<string | undefined>(undefined);
 
     useEffect( () => {
         setNumberOfScholarships(scholarships.length);
@@ -39,7 +41,7 @@ const ListPage = () => {
             console.error('Failed to get data: ', error);
         }
     }
-    
+
     const handleCheckboxChange = (index: number) => {
         const newData = [...scholarships];
         newData[index].saved = !newData[index].saved;
@@ -64,10 +66,10 @@ const ListPage = () => {
     }
 
     const goToApplication = (index: number) => {
-        if (scholarships[index].href === undefined) {
-            throw ParserException;
-        } else {
-            window.open(scholarships[index]?.href);
+        if (scholarships[index]) {
+            if (scholarships[index].href !== undefined) {
+                window.open(scholarships[index].href, '_blank', 'noopener, noreferrer');
+            }
         }
     }
 
@@ -79,10 +81,11 @@ const ListPage = () => {
 
     const openScholarshipSite = (index : number) => {
         const selectedScholarship = scholarships[index];
-        if (selectedScholarship.href === undefined) {
-            throw ParserException;
+        if (selectedScholarship.href === null) {
+            setIsPreviewSelected(false);
         } else {
             setPreviewScholarshipSite(selectedScholarship.href);
+            setIsPreviewSelected(true);
         }
     }
 
@@ -130,10 +133,16 @@ const ListPage = () => {
                     </div>
                 </div>
                 <div className="preview-container">
-                    {previewScholarshipSite ? (
-                        <iframe src={previewScholarshipSite} title="Scholarship Preview" width="100%" height="100%" />
+                    {isPreviewSelected ? (
+                        <div>
+                            <iframe src={previewScholarshipSite} title="Scholarship Preview" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" width={840} height={785} />
+                        </div>
                     ) : (
-                        <p>This is the preview of the website.</p>
+                        <div className="saved-scholarships-landing">
+                            <img src={navisLogo} className="navis-logo-landing" height={100} width={70}></img>
+                            <h2>Nothing to sea here...</h2>
+                            <h1>Click on a scholarShip to view in browser.</h1>
+                        </div>
                     )}
                 </div>
             </div>

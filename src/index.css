@@ -51,6 +51,10 @@ h1 {
     padding: 0rem 0rem;
   }
 
+  .navis-logo-landing {
+    margin-bottom: 1rem;
+  }
+
   .openWebAppButton {
     border-radius: 8px;
     color: #132025;
@@ -117,6 +121,12 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  transition: border-color 0.25s;
   cursor: pointer;
 }
 /* button:hover {
@@ -281,18 +291,20 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
 }
 
 .preview-container {
-  flex-grow: 1; /* this takes up the remaining space */
-  align-items: center;
+  flex-grow: 1;
   display: flex;
-  margin-left: 1em;
-  padding: 5em;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
   height: 100%;
-  width: 100%;
+  top: 0;
+  right: 0;
+  width: 60%;
+  background-color:#fbecd8;
   overflow-y: auto;
 }
 
@@ -344,6 +356,16 @@ button:focus-visible {
   height: 100vh;
   overflow-y: auto;
   padding-right: 30px;
+}
+
+.saved-scholarships-landing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 250px;
+  text-align: center;
 }
 
 .scan_section {
