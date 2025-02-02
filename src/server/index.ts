@@ -17,7 +17,7 @@ app.post('/api/scholarships', async (req, res) => {
             const { name, href, description, saved } = scholarship;
             console.log('Awaiting pool.query()');
             await pool.query(
-                'INSERT INTO scholarships (name, url, description, saved) VALUES ($1, $2, $3, $4) RETURNING *',
+                'INSERT INTO scholarships (name, href, description, saved) VALUES ($1, $2, $3, $4) RETURNING *',
                 [name, href, description, saved]
             );
             console.log('Inserted scholarship:', scholarship);
