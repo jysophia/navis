@@ -31,10 +31,6 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: large;
-}
-
 .banner_success {
   background-color: #38515E;
   position: fixed;
@@ -191,8 +187,11 @@ button:focus-visible {
   align-items: center;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: space-between;
-  text-align: center;
+  justify-content: center;
+  align-items: left;
+  text-align: left;
+  margin-left: 2rem;
+  margin-right: 2rem;
   height: 100vh;
   width: 100vw;
   overflow-y: auto;
@@ -446,4 +445,32 @@ button:focus-visible {
   height: 100vh;
   width: 100vw;
   overflow-y: auto;
+}
+
+.webapp-landing-header {
+  display: flex;
+  flex-direction: row;
+  align-items:last baseline;
+  justify-content: space-between;
+  margin-top: 5rem;
+}
+
+.webapp-landing-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: left;
+  text-align: left;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.webapp-landing-tail {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: left;
+  text-align: left;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
