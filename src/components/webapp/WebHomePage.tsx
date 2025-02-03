@@ -6,8 +6,6 @@ import Calendar from "./Calendar";
 import longerLine from '../../assets/longerLine.svg';
 import todaysDate from '../../assets/todaysDate.svg';
 import deadline from '../../assets/deadline.svg';
-import deadlineBarEmpty from '../../assets/deadlineBarEmpty.svg';
-import deadlineBarFill from '../../assets/deadlineBarFill.svg';
 
 const WebHomePage = () => {
     const [featuredNews, setFeaturedNews] = useState([]);
