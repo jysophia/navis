@@ -11,7 +11,7 @@ const WebHomePage = () => {
     const [featuredNews, setFeaturedNews] = useState([]);
     const [featuredNewsSuccess, setFeaturedNewsSuccess] = useState(false);
     const deadlines = [
-        { date: '2025-02-15', scholarship: 'UBC Scholarships for Women in STEM' },
+        { date: '2025-02-15', scholarship: 'UBC Graduate Fellowships (UGF)' },
         { date: '2025-02-28', scholarship: 'Students in the Faculty of Science' },
         { date: '2025-03-08', scholarship: 'Awards and Scholarships for UBC Aboriginal Students' },
         { date: '2025-03-29', scholarship: 'Gracie Hopper Scholarship for CS Students' },
