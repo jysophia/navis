@@ -12,7 +12,7 @@ const ListPage = () => {
     const [scholarships, setScholarships] = useState<Scholarship[]>([]);
     const [toBeUnsavedList, setToBeUnsavedList] = useState<Scholarship[]>(scholarships);
     const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
-    const [numberOfScholarships, setNumberOfScholarships] = useState(0);
+    const [numberOfScholarships, setNumberOfScholarships] = useState<number>(scholarships.length);
     const [isPreviewSelected, setIsPreviewSelected] = useState<boolean>(false);
     const [previewScholarshipSite, setPreviewScholarshipSite] = useState<string | undefined>(undefined);
 
@@ -73,9 +73,9 @@ const ListPage = () => {
         }
     }
 
-    const deleteScholarships = () => {
+    const deleteScholarships = async () => {
         const refreshedList = toBeUnsavedList.filter((scholarship : any) => !scholarship.saved);
-        deleteFromDB(refreshedList);
+        await deleteFromDB(refreshedList);
         getScholarships();
     }
 
