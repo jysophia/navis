@@ -94,11 +94,11 @@ const ListPage = () => {
             <div className="page-container">
                 <div className="saved-scholarships-container">
                     <div className="saved-scholarships-header1">
-                        <h1>Saved Scholarships</h1>
-                        <div className="saved-scholarships-header2">
-                            <p className="result-text">Showing {numberOfScholarships} results</p>
-                            <button onClick={deleteScholarships} className="result-add-db-btn">Delete Unselected Items</button>
-                        </div>
+                        <h2>Saved Scholarships</h2>
+                    </div>
+                    <div className="saved-scholarships-header2">
+                        <p className="result-text">Showing {numberOfScholarships} results</p>
+                        <button onClick={deleteScholarships} className="result-add-db-btn">Delete Unselected Items</button>
                     </div>
                     <div className="saved-scholarships-body">
                         {scholarships.map((scholarship: any, index: number) => (
@@ -136,8 +136,8 @@ const ListPage = () => {
                     ) : (
                         <div className="saved-scholarships-landing">
                             <img src={navisLogo} className="navis-logo-landing" height={100} width={70}></img>
-                            <h2>Nothing to sea here...</h2>
-                            <h1>Click on a scholarShip to view in browser.</h1>
+                            <h1>Nothing to sea here...</h1>
+                            <h2>Click on a scholarShip to view in browser.</h2>
                         </div>
                     )}
                 </div>

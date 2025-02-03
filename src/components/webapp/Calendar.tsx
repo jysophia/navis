@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Calendar as ReactCalendar } from 'react-calendar';
+import deadlineIcon from '../../assets/deadline.svg';
 
 // Reference: copilot
 const Calendar = ({ deadlines } : any ) => {
@@ -14,10 +15,12 @@ const Calendar = ({ deadlines } : any ) => {
 
     const tileContent = ({ date, view } : { date: Date, view: string }) => {
         if (view === 'month') {
-            const deadline = deadlines.find((d : any) => new Date(d.date).toDateString() === date.toDateString());
+            const deadline = deadlines.find((d : any) => new Date(d.date).toISOString().split('T')[0] === date.toISOString().split('T')[0]);
             if (deadline) {
                 return (
-                    <div className="deadline-tile">{deadline.name}</div>
+                    <div>
+                        <img src={deadlineIcon} className="deadline-icon"></img>
+                    </div>
                 );
             }
         }
@@ -31,6 +34,10 @@ const Calendar = ({ deadlines } : any ) => {
             tileClassName={({ date, view }) => {
                 if (view === 'month' && date.toDateString() === new Date().toDateString()) {
                     return 'highlight-today';
+                }
+                const deadline = deadlines.find((d: any) => new Date(d.date).toDateString() === date.toDateString());
+                if (deadline) {
+                    return 'deadline-day';
                 }
             }}
             />

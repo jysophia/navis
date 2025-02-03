@@ -6,22 +6,23 @@ import Calendar from "./Calendar";
 import longerLine from '../../assets/longerLine.svg';
 import todaysDate from '../../assets/todaysDate.svg';
 import deadline from '../../assets/deadline.svg';
+import deadlineBarEmpty from '../../assets/deadlineBarEmpty.svg';
+import deadlineBarFill from '../../assets/deadlineBarFill.svg';
 
 const WebHomePage = () => {
     const [featuredNews, setFeaturedNews] = useState([]);
     const [featuredNewsSuccess, setFeaturedNewsSuccess] = useState(false);
-    const [deadlines, setDeadlines] = useState([
-        { date: '2025-02-15', scholarship: 'Scholarship A' },
-        { date: '2025-03-01', scholarship: 'Scholarship B' }
-    ]);
+    const deadlines = [
+        { date: '2025-02-15', scholarship: 'UBC Scholarships for Women in STEM' },
+        { date: '2025-02-28', scholarship: 'Students in the Faculty of Science' },
+        { date: '2025-03-08', scholarship: 'Awards and Scholarships for UBC Aboriginal Students' },
+        { date: '2025-03-29', scholarship: 'Gracie Hopper Scholarship for CS Students' },
+        { date: '2025-04-13', scholarship: 'UBC Entrance Scholarship' }
+    ];
     const api_key = import.meta.env.VITE_COHERE_API_KEY;
     const todaydate = new Date().toLocaleDateString('en-US', {
         month: 'long',
         day: 'numeric',
-        year: 'numeric'
-    })
-    const calendardate = new Date().toLocaleDateString('en-US', {
-        month: 'long',
         year: 'numeric'
     })
 
@@ -50,6 +51,35 @@ const WebHomePage = () => {
         }
     }
 
+    // Reference: copilot
+    const getApproachingDeadlines = () => {
+        const today = new Date();
+        return deadlines.filter((deadline) => {
+            const deadlineDate = new Date(deadline.date);
+            const diffTime = Math.abs(deadlineDate.getTime() - today.getTime());
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays <= 30;
+        });
+    }
+
+    // Reference: copilot
+    const calculateProgress = (deadlineDate: Date): number => {
+        const today = new Date();
+        const totalDays = 30;
+        const diffTime = Math.abs(new Date(deadlineDate).getTime() - today.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        return ((totalDays - diffDays) / totalDays) * 100;
+    };
+
+    // Reference: copilot
+    const getDaysLeft = (deadlineDate: Date): number => {
+        const today = new Date();
+        const diffTime = Math.abs(new Date(deadlineDate).getTime() - today.getTime());
+        return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    }
+
+    const approachingDeadlines = getApproachingDeadlines();
+
     return (
         <>
             <div className="page-container">
@@ -63,7 +93,29 @@ const WebHomePage = () => {
                         <h2>You have new scholarships! <a href="#/webapp/list">Go check it out</a></h2>
                     </div>
                     <div className="webapp-landing-body">
-                        <h3>Applications in Progress</h3>
+                        <h3>Approaching Deadlines</h3>
+                        {
+                            approachingDeadlines.map((deadline: any, index: number) => (
+                                <div className="deadline">
+                                    <div className="deadline-text" key={index}>
+                                        <p>{deadline.scholarship}</p>
+                                        <p>{deadline.date}</p>
+                                    </div>
+                                    <div className="deadline-bar">
+                                        <div className="deadline-bar-empty"></div>
+                                        <div
+                                            className="deadline-bar-fill"
+                                            style={{
+                                                width: `${calculateProgress(new Date(deadline.date))}%`
+                                            }}
+                                        ></div>
+                                        <div className="days-left">
+                                        {getDaysLeft(new Date(deadline.date))} days left
+                                    </div>
+                                    </div>
+                                </div>
+                            ))
+                        }
                     </div>
                     <div className="webapp-landing-tail">
                         <h3>Featured News</h3>

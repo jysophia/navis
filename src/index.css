@@ -271,13 +271,70 @@ button:focus-visible {
 }
 
 .react-calendar__month-view__days__day--neighboringMonth {
-  color: transparent;
+  color: rgb(196, 192, 192);
 }
 
 .highlight-today {
   border: 1px solid var(--Primary-Color-2, #2E7FAB);
   background: var(--Primary-Color-2, #2E7FAB);
   color: white;
+}
+
+.deadline-day {
+  position: relative;
+}
+
+.deadline-icon {
+  width: 10px;
+  height: 15px;
+}
+
+.deadline-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.deadline-bar {
+  position: relative;
+  margin-top: 5px;
+}
+
+.deadline-bar-empty {
+  position: relative;
+  height: 22px;
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background: var(--Navi-Neutral, #FFFCFB);
+  background-color: transparent;
+}
+
+.deadline-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #2E7FAB;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: width 0.3s ease;
+}
+
+.days-left {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.25px;
+  color: #000;
 }
 
 .expandToggleButton {
@@ -459,16 +516,19 @@ button:focus-visible {
 .saved-scholarships-header1 {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  text-align: left;
   justify-content: space-between;
   padding: 0;
   margin: 0;
-  width: 100%;
+  width: 85%;
 }
 
 .saved-scholarships-header2 {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 88%;
 }
 
 .saved-scholarships-landing {
@@ -476,9 +536,8 @@ button:focus-visible {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 250px;
   text-align: center;
+  height: 100vh;
 }
 
 .scan_section {
