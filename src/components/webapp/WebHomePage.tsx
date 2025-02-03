@@ -1,13 +1,19 @@
 import '../../index.css';
-import React from 'react';
 import { useEffect, useState } from 'react';
 import { CohereClient } from "cohere-ai";
 import { parseText } from "../extension/WebScraper"
+import Calendar from "./Calendar";
 import longerLine from '../../assets/longerLine.svg';
+import todaysDate from '../../assets/todaysDate.svg';
+import deadline from '../../assets/deadline.svg';
 
 const WebHomePage = () => {
     const [featuredNews, setFeaturedNews] = useState([]);
     const [featuredNewsSuccess, setFeaturedNewsSuccess] = useState(false);
+    const [deadlines, setDeadlines] = useState([
+        { date: '2025-02-15', scholarship: 'Scholarship A' },
+        { date: '2025-03-01', scholarship: 'Scholarship B' }
+    ]);
     const api_key = import.meta.env.VITE_COHERE_API_KEY;
     const todaydate = new Date().toLocaleDateString('en-US', {
         month: 'long',
@@ -33,14 +39,15 @@ const WebHomePage = () => {
             model: "command-r-08-2024",
             preamble: "You are an AI-assistant chatbot. You are trained to assist users by providing thorough and helpful responses to their queries."
         });
-        console.log(response.text);
         let parsedFeaturedNewsList: any = [];
         if (parsedFeaturedNewsList === undefined) {
             setFeaturedNewsSuccess(false);
+        } else {
+            parsedFeaturedNewsList = (parseText(response.text));
+            console.log(parsedFeaturedNewsList);
+            setFeaturedNews(parsedFeaturedNewsList);
+            setFeaturedNewsSuccess(true);
         }
-        parsedFeaturedNewsList = (parseText(response.text));
-        setFeaturedNews(parsedFeaturedNewsList);
-        setFeaturedNewsSuccess(true);
     }
 
     return (
@@ -48,11 +55,12 @@ const WebHomePage = () => {
             <div className="page-container">
                 <div className="webapp-landing-page">
                     <div className="webapp-landing-header">
-                        <img src='/public/navisLogo.png' />
+                        <img src='/navisLogo.png' height={60} width={44}/>
                         <h1>Hey Navis,</h1>
                     </div>
                     <div className="webapp-landing-subheader">
-                        <h2>You added 1 new scholarship! Go check it out</h2>
+                        <img src={deadline}></img>
+                        <h2>You have new scholarships! <a href="#/webapp/list">Go check it out</a></h2>
                     </div>
                     <div className="webapp-landing-body">
                         <h3>Applications in Progress</h3>
@@ -73,13 +81,24 @@ const WebHomePage = () => {
                                 </div>
                         ))) : (
                             <div>
+                                <p>Loading today's news...</p>
                             </div>
                         )}
                     </div>
                     
                 </div>
                 <div className="calendar">
-                    <h2>{calendardate}</h2>
+                    <Calendar deadlines={deadlines}/>
+                    <div className="calendar-tail">
+                        <div className="calendar-legend">
+                            <img src={todaysDate}></img>
+                            <p className="calendar-legend-text">Today's Date</p>
+                        </div>
+                        <div className="calendar-legend">
+                            <img src={deadline}></img>
+                            <p className="calendar-legend-text">Deadline</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

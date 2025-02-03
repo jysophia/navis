@@ -94,7 +94,7 @@ const ListPage = () => {
             <div className="page-container">
                 <div className="saved-scholarships-container">
                     <div className="saved-scholarships-header1">
-                        <h1 className="result-title">Saved Scholarships</h1>
+                        <h1>Saved Scholarships</h1>
                         <div className="saved-scholarships-header2">
                             <p className="result-text">Showing {numberOfScholarships} results</p>
                             <button onClick={deleteScholarships} className="result-add-db-btn">Delete Unselected Items</button>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -15,6 +17,7 @@
 
 a {
   font-weight: 500;
+  font-family: 'Lato';
   color: #38515E;
   text-decoration: inherit;
 }
@@ -29,6 +32,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: 'Lato', 'Roboto';
 }
 
 .banner_success {
@@ -151,7 +155,6 @@ button:focus-visible {
   padding: 5px;
   border-radius: 8px;
   border: 1px solid transparent;
-  /* background-color: #FFFCFB; */
   justify-content: left;
   align-items: left;
   width: 100%;
@@ -184,17 +187,97 @@ button:focus-visible {
 
 .calendar {
   display: flex;
-  align-items: center;
   flex-direction: column;
   flex-grow: 1;
   justify-content: center;
-  align-items: left;
+  align-items: center;
   text-align: left;
-  margin-left: 2rem;
-  margin-right: 2rem;
   height: 100vh;
   width: 100vw;
   overflow-y: auto;
+}
+
+.calendar-container {
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  text-align: center;
+}
+
+.calendar-tail {
+  align-items: left;
+  text-align: left;
+  width: 400px;
+}
+
+.calendar-legend {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1rem;
+}
+
+.calendar-legend-text {
+  color: var(--Navi-Text, #132025);
+  font-family: 'Lato';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.25px;
+}
+
+.calendar-legend img {
+  margin-right: 8px;
+}
+
+.react-calendar {
+  border: none;
+  font-family: Lato;
+  color: var(--Navi-Text, #132025);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.25px;
+  width: 400px;
+}
+
+.react-calendar__navigation__arrow {
+  background-color: transparent;
+  height: 30px;
+  width: 30px;
+}
+
+.react-calendar__navigation__label {
+  background-color: transparent;
+}
+
+.react-calendar__month-view__weekdays {
+  text-decoration: none;
+}
+
+.react-calendar__tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 0px;
+}
+
+.react-calendar__month-view__days__day_ {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: transparent;
+}
+
+.highlight-today {
+  border: 1px solid var(--Primary-Color-2, #2E7FAB);
+  background: var(--Primary-Color-2, #2E7FAB);
+  color: white;
 }
 
 .expandToggleButton {
@@ -380,6 +463,7 @@ button:focus-visible {
   justify-content: space-between;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
 .saved-scholarships-header2 {
@@ -451,8 +535,22 @@ button:focus-visible {
   display: flex;
   flex-direction: row;
   align-items:last baseline;
-  justify-content: space-between;
   margin-top: 5rem;
+  width: 80%;
+}
+
+.webapp-landing-header img {
+  margin-right: 10px;
+}
+
+.webapp-landing-subheader {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+}
+
+.webapp-landing-subheader img {
+  margin-right: 10px;
 }
 
 .webapp-landing-body {
@@ -463,6 +561,7 @@ button:focus-visible {
   text-align: left;
   margin-left: 2rem;
   margin-right: 2rem;
+  width: 80%;
 }
 
 .webapp-landing-tail {
@@ -473,4 +572,5 @@ button:focus-visible {
   text-align: left;
   margin-left: 2rem;
   margin-right: 2rem;
+  width: 80%;
 }
