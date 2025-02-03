@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -15,11 +17,12 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  font-family: 'Lato';
+  color: #38515E;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #38515E;
 }
 
 body {
@@ -29,10 +32,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: large;
+  font-family: 'Lato', 'Roboto';
 }
 
 .banner_success {
@@ -51,6 +51,10 @@ h1 {
     padding: 0rem 0rem;
   }
 
+  .navis-logo-landing {
+    margin-bottom: 1rem;
+  }
+
   .openWebAppButton {
     border-radius: 8px;
     color: #132025;
@@ -67,7 +71,6 @@ h1 {
   }
 
   .exit {
-    color: #38515E;
     background-color: transparent;
     margin: 0.80em;
     padding: 0rem 0rem;
@@ -123,16 +126,16 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
-  cursor: pointer;
   transition: border-color 0.25s;
+  cursor: pointer;
 }
 /* button:hover {
   border-color: #646cff;
 } */
-button:focus,
+/* button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+} */
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -152,7 +155,6 @@ button:focus-visible {
   padding: 5px;
   border-radius: 8px;
   border: 1px solid transparent;
-  background-color: #FFFCFB;
   justify-content: left;
   align-items: left;
   width: 100%;
@@ -183,6 +185,158 @@ button:focus-visible {
   justify-content: space-between;
 }
 
+.calendar {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+}
+
+.calendar-container {
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  text-align: center;
+}
+
+.calendar-tail {
+  align-items: left;
+  text-align: left;
+  width: 400px;
+}
+
+.calendar-legend {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1rem;
+}
+
+.calendar-legend-text {
+  color: var(--Navi-Text, #132025);
+  font-family: 'Lato';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.25px;
+}
+
+.calendar-legend img {
+  margin-right: 8px;
+}
+
+.react-calendar {
+  border: none;
+  font-family: Lato;
+  color: var(--Navi-Text, #132025);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.25px;
+  width: 400px;
+}
+
+.react-calendar__navigation__arrow {
+  background-color: transparent;
+  height: 30px;
+  width: 30px;
+}
+
+.react-calendar__navigation__label {
+  background-color: transparent;
+}
+
+.react-calendar__month-view__weekdays {
+  text-decoration: none;
+}
+
+.react-calendar__tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 0px;
+}
+
+.react-calendar__month-view__days__day_ {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: rgb(196, 192, 192);
+}
+
+.highlight-today {
+  border: 1px solid var(--Primary-Color-2, #2E7FAB);
+  background: var(--Primary-Color-2, #2E7FAB);
+  color: white;
+}
+
+.deadline-day {
+  position: relative;
+}
+
+.deadline-icon {
+  width: 10px;
+  height: 15px;
+}
+
+.deadline-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.deadline-bar {
+  position: relative;
+  margin-top: 5px;
+}
+
+.deadline-bar-empty {
+  position: relative;
+  height: 22px;
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background: var(--Navi-Neutral, #FFFCFB);
+  background-color: transparent;
+}
+
+.deadline-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #2E7FAB;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: width 0.3s ease;
+}
+
+.days-left {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.25px;
+  color: #000;
+}
+
 .expandToggleButton {
   background-color: transparent;
   border: none;
@@ -196,10 +350,18 @@ button:focus-visible {
 }
 
 .flex-container {
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  position: fixed;
+  align-items: center;
   display: flex;
-  width: 1200px;
-  justify-content: space-between;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
 }
+
 .flex-child {
   padding-left: 2em;
 } 
@@ -221,10 +383,22 @@ button:focus-visible {
 
 .navBarContainer {
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 145px;
+  background-color: #FFFCFB;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.navBarInnerContainer {
+  align-items: center;
+  display: flex;
   flex-direction: column;
-  border-right: 1px solid #2d52a0;
-  margin-right: 2em;
-  padding-right: 2em;
+  height: 100%;
+  justify-content: center;
 }
 
 .navBarLogo {
@@ -232,19 +406,61 @@ button:focus-visible {
   padding: 2em;
 }
 
+.navBarDivider {
+  height: 100%;
+}
+
+.navBarMenuItems {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.navContainer .navBarDivider {
+  margin-left: 1rem;
+}
+
 .navBarOption {
   padding: 2em;
 }
 
 .navis_title {
-  align-items: left;
-  display: flex;
-  justify-content: left;
   margin-left: 0;
   margin-top: 0;
   margin-bottom: 10px;
   width: auto;
   height: auto;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 145px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.preview-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  background-color:#fbecd8;
+}
+
+.profile-btn {
+  background-color: transparent;
+}
+
+.profile-icon {
+  background-color: transparent;
 }
 
 .result-subheader {
@@ -275,6 +491,53 @@ button:focus-visible {
   font-style: italic;
   padding: 0;
   margin: 0;
+}
+
+.saved-scholarships-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  padding-left: 1rem;
+}
+
+.saved-scholarships-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  width: 50%;
+  padding-right: 10px;
+  overflow-y: auto;
+}
+
+.saved-scholarships-header1 {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  width: 85%;
+}
+
+.saved-scholarships-header2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 88%;
+}
+
+.saved-scholarships-landing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
 }
 
 .scan_section {
@@ -314,4 +577,59 @@ button:focus-visible {
   width: 169px;
   cursor: pointer;
   transition: background-color 0.25s;
+}
+
+.webapp-landing-page {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+}
+
+.webapp-landing-header {
+  display: flex;
+  flex-direction: row;
+  align-items:last baseline;
+  margin-top: 5rem;
+  width: 80%;
+}
+
+.webapp-landing-header img {
+  margin-right: 10px;
+}
+
+.webapp-landing-subheader {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+}
+
+.webapp-landing-subheader img {
+  margin-right: 10px;
+}
+
+.webapp-landing-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: left;
+  text-align: left;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  width: 80%;
+}
+
+.webapp-landing-tail {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: left;
+  text-align: left;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  width: 80%;
 }

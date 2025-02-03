@@ -54,7 +54,7 @@ const ScholarshipList = ({data}: any) => {
     return (
         <>
         <div className="result-header">
-            <h1 className="result-title">Page Results</h1>
+            <h3 className="result-title">Page Results</h3>
         </div>
         <div className="result-subheader">
             <p className="result-text">Showing {numberOfScholarships} results</p>
