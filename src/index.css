@@ -414,7 +414,8 @@ button:focus-visible {
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
+  margin-top: -3rem;
   height: 100%;
 }
 

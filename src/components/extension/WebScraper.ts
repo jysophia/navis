@@ -5,7 +5,7 @@ export function parseText(fullText: any) {
     let scholarships = fullText.split("\n");
     let scholarshipList: any = [];
     for (const point of scholarships) {
-        if (point[0] == '*') {
+        if (point[0] == '*' || point[0] == "-") {
             let currentScholarship = point.split('&&');
             let scholarship : Scholarship = {
                 name: currentScholarship[0],

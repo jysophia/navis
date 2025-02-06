@@ -6,6 +6,7 @@ import Calendar from "./Calendar";
 import longerLine from '../../assets/longerLine.svg';
 import todaysDate from '../../assets/todaysDate.svg';
 import deadline from '../../assets/deadline.svg';
+import navisLogo from '../../assets/navisLogo.svg';
 
 const WebHomePage = () => {
     const [featuredNews, setFeaturedNews] = useState([]);
@@ -83,7 +84,7 @@ const WebHomePage = () => {
             <div className="page-container">
                 <div className="webapp-landing-page">
                     <div className="webapp-landing-header">
-                        <img src='/navisLogo.png' height={60} width={44}/>
+                        <img src={navisLogo} height={70}/>
                         <h1>Hey Navis,</h1>
                     </div>
                     <div className="webapp-landing-subheader">

@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { CohereClient } from "cohere-ai";
-import { parseText } from "./WebScraper"
+import { parseText } from "./WebScraper";
 import title_dark from "../../assets/navisTitleDefault.svg";
 import title_light from "../../assets/navisTitleSuccess.svg";
 import exit_dark from "../../assets/exit_dark.svg";
